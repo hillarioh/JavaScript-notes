@@ -7,3 +7,5 @@ Freecodecamp Javascript exercises
 2. Regex Expressions.
 3. Debugging.
 4. Data Structures.
+5. OOP.
+6. Functional Programming.
