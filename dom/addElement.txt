@@ -1,0 +1,16 @@
+let newArticle = document.createElement('article');
+let newHeading = document.createElement('h3');
+newHeading.textContent = "Article 004";
+
+let newParagraph = document.createElement('p');
+newParagraph.textContent = "Try to hold own back foot to clean it but foot reflexively kicks you in face, go into a rage and bite own foot, hard stares at human while pushing stuff off a table chase dog then run away. Jump on human and sleep on her all night long be long in the bed, purr in the morning and then give a bite to every human around for not waking up request food";
+
+newArticle.appendChild(newHeading);
+newArticle.appendChild(newParagraph);
+newArticle.classList.add("m-2","p-2","border","border-secondary");
+newArticle.setAttribute("id","art-004");
+
+const main = document.querySelector('main');
+
+main.appendChild(newArticle);
+

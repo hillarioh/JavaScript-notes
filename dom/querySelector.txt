@@ -1,0 +1,11 @@
+The  document.querySelector()  method returns the first element in the DOM that matches the given selector(s).  You can use tag names, classes, id  attributes, or a mixture of the three:
+
+document.querySelector('p')  — returns the first  <p>  element
+
+document.querySelector('.text-white')  — returns the first element with class  text-white
+
+document.querySelector('#art-001')  — returns the element with  id  attribute  art-001
+
+document.queryselector('p.text-white')  — returns the first  <p>  element with class  text-white    
+
+This method has a partner method, document.querySelectorAll() , which returns an  NodeList  containing all elements which match the given selector(s).

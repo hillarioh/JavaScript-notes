@@ -1,0 +1,25 @@
+const header = document.querySelector('header');
+
+let blueButton = document.getElementById('color-button-blue');
+let brownButton = document.getElementById('color-button-brown');
+let greenButton = document.getElementById('color-button-green');
+let noneButton = document.getElementById('color-button-none'); 
+
+blueButton.addEventListener('click', () => {
+  header.classList.remove('brown-background', 'green-background');
+  header.classList.add('blue-background', 'text-white');
+});
+
+brownButton.addEventListener('click', () => {
+  header.classList.remove('blue-background', 'green-background');
+  header.classList.add('brown-background', 'text-white');
+});
+
+greenButton.addEventListener('click', () => {
+  header.classList.remove('brown-background', 'blue-background');
+  header.classList.add('green-background', 'text-white');
+});
+
+noneButton.addEventListener('click', () => {
+  header.classList.remove('brown-background','green-background', 'blue-background','text-white');
+});

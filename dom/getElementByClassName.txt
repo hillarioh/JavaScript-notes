@@ -1,0 +1,7 @@
+const articles = document.getElementsByTagName('article');
+const paragraphs = document.getElementsByTagName('p');
+
+const white = document.getElementsByClassName('text-white');
+
+const firstArticle = articles[0];
+const secondParagraph = paragraphs[1];

@@ -1,0 +1,5 @@
+const articles = document.getElementsByTagName('article');
+const paragraphs = document.getElementsByTagName('p');
+
+const firstArticle = articles[0];
+const firstParagraph = paragraphs[0];
