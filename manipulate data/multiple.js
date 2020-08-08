@@ -9,6 +9,14 @@ const api = 'https://us-central1-open-classrooms-js-for-the-web.cloudfunctions.n
 
 const makeRequest = (verb,url,data)=>{
     return new Promise((resolve,reject)=>{
+        if (verb === 'POST' && !data){
+            reject({error: "No data provide for object post request"});
+        }
+
+        if  (verb!=='POST' && verb!=='GET'){
+                reject({error: "Invalid Request Verb"});
+        } 
+        
         const request = new XMLHttpRequest();
         request.open(verb, url);
 
@@ -32,23 +40,34 @@ const makeRequest = (verb,url,data)=>{
 };
 
 async function createPost(){
-    let uidPromise = makeRequest('GET',api + '/generate-uid');
+
+    let uidPromise = makeRequest('GET', api + '/generate-uid');
     let titlePromise = makeRequest('GET', api + '/generate-title');
     let contentPromise = makeRequest('GET', api + '/generate-lorem');
 
-    const [ uidResponse,titleResponse, contentResponse ] = await Promise.all([uidPromise,titlePromise,contentPromise]);
+    try {
+        const [uidResponse, titleResponse, contentResponse] = await Promise.all([uidPromise, titlePromise, contentPromise]);
+        const postPromise = makeRequest('POST', api + '/create-post-with-uid', {
+            uid: uidResponse.uid,
+            title: titleResponse.title,
+            content: contentResponse.lorem
+        });
 
-    const postPromise = makeRequest('POST',api + '/create-post-with-uid',{
-        uid: uidResponse.uid,
-        title: titleResponse.title,
-        content: contentResponse.lorem
-    });
+        try {
+            const postResponse = await postPromise;
+            postTitle.textContent = postResponse.post.title;
+            postId.textContent = postResponse.post.id;
+            postContent.textContent = postResponse.post.content;
 
-    const postResponse = await postPromise;
+        } catch (errorResponse) {
+            postTitle.textContent = errorResponse.error;
+        }    
+        
+    } catch (errorRequest) {
+        postTitle.textContent = errorRequest.error;
+    }
 
-    postTitle.textContent = postResponse.post.title ;
-    postId.textContent = postResponse.post.id;
-    postContent.textContent = postResponse.post.content;
+   
 }
 
 generateButton.addEventListener('click',()=>{
